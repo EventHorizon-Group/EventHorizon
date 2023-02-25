@@ -13,10 +13,11 @@ def user_create():
         return redirect ('/create')
 
     data={
-        'item_name': request.form ['item_name'],
+        'event_name': request.form ['event_name'],
         'description': request.form ['description'],
-        'store_name': request.form['store_name'],
-        'user_id':session ['user_id']
+        'member_num': request.form['member_num'],
+        'location': request.form['location'],
+        'date': request.form['date']
     }
     Event.create(data)
     return redirect ('/dashboard')
