@@ -1,7 +1,7 @@
 from flask import render_template,redirect,session,request, flash
 from flask_app import app
 from flask_app.models.user import User
-from flask_app.models.show import Item
+from flask_app.models.event import Event
 from flask_bcrypt import Bcrypt
 bcrypt = Bcrypt(app) # we are creating an object called bcrypt, 
 # which is made by invoking the function Bcrypt with our app as an argument
@@ -54,7 +54,7 @@ def dashboard():
     data ={
         'id': session['user_id']
     }
-    return render_template("dashboard.html",user=User.get_by_id(data), the_item =Item.get_users_and_items())
+    return render_template("dashboard.html",user=User.get_by_id(data), events = Event.get_all())
 
 @app.route('/logout')
 def logout():
