@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div>
+        <div>
+            <h3> Event Date </h3>
+            <h4> Title:  </h4>
+            <p>{{event.event_name}}</p>
+            <h4> Date </h4>
+            <p>{{event.date}} </p>
+            <h4> Time  </h4> <!--Are we going to add time-->
+            <p></p>
+        </div>
+        <div>
+            <h3> Information </h3>
+            <h4> Title: </h4>
+            <p>{{event.event_name}}</p>
+            <h4> Description </h4>
+            <p> {{event.description}} </p>
+            <h4> Location </h4>
+            <p> {{event.location}} </p>
+            <h4> Members </h4>
+            <p>{{event.member_num}}</p>
+        </div>
+    </div>
+</body>
+</html>
