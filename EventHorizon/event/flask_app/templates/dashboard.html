@@ -17,6 +17,57 @@
             <a class="btn btn-primary" href="/create">+ Create</a>
             <a class="btn btn-danger float-right" href="/logout">Logout</a>
         </div>
+        <div>
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Event Name </th>
+                            <th>Location Name </th>
+                            <th>Attendees</th>
+                            <th>Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!--{% for event in the_event}-->
+                        <tr>
+                            <td>
+                                <a href="/deatils/{{event.id}}">{{event.event_name}}</a></td>
+                            <td>{{event.location}}</td>
+                            <td>{{event.attendees}}</td>
+                            <td>{{event.date}}{{event.time}}</td>
+                        </tr>
+                        <!--{% endfor %}-->
+                    </tbody>
+                </table>
+            </div>
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Event Name </th>
+                            <th>Location Name </th>
+                            <th>Attendees</th>
+                            <th>Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!--{% for event in the_event %}-->
+                            <!--{% if session ['username_id'] == event.userself.id%}-->
+                        <tr>
+                            <td>
+                                <a href="/deatils/{{event.id}}">{{event.event_name}}</a></td>
+                            <td>{{event.location}}</td>
+                            <td>{{event.attendees}}</td>
+                            <td>{{event.date}}{{event.time}}</td>
+                        </tr>
+
+                        <!--{% endfor%}-->
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </body>
 </html>
