@@ -15,6 +15,7 @@ class Event:
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
         self.userself = None
+        self.on_users = []
 
     @classmethod
     def create(cls, data):
@@ -25,42 +26,17 @@ class Event:
                     location, 
                     date, 
                     description, 
-                    member_num, 
-                    user_id) 
+                    member_num) 
             VALUES 
                 (%(event_name)s, 
                 %(location)s,
                 %(date)s,
                 %(description)s, 
-                %(member_num)s, 
-                %(user_id)s);
+                %(member_num)s;
             """
         results = connectToMySQL(DB).query_db(query,data)
         print (results)
         return results
-
-    @classmethod
-    def get_users_and_events(cls):
-        query = "SELECT * FROM events JOIN users on users.id = events.user_id;"
-        results = connectToMySQL(DB).query_db(query)
-        print (results)
-        all_events = []
-
-        for pho in results:
-            one_event = cls(pho)
-            user_data ={
-                'id':pho['users.id'], 
-                'first_name':pho['first_name'],
-                'last_name':pho['last_name'],
-                'email':pho['email'],
-                'password':None,
-                'created_at': pho['users.created_at'],
-                'updated_at':pho['users.updated_at']
-            }
-            user_obj = user.User(user_data)
-            one_event.userself = user_obj
-            all_events.append(one_event)
-        return all_events
 
     @classmethod
     def destroy (cls, data):
@@ -89,13 +65,13 @@ class Event:
         event = cls (results [0])
         for result in results:
             one_user_data={
-                'id':result[0]['users.id'],
-                'first_name':result[0]['first_name'],
-                'last_name':result[0]['last_name'],
-                'email':result[0]['email'],
+                'id':result['users.id'],
+                'first_name':result['first_name'],
+                'last_name':result['last_name'],
+                'email':result['email'],
                 'password': None,
-                'created_at':result[0]['users.created_at'],
-                'updated_at':result[0]['users.updated_at']
+                'created_at':result['users.created_at'],
+                'updated_at':result['users.updated_at']
             }
             event.on_users.append( user.User( one_user_data ))
         return event
