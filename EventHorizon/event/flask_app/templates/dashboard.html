@@ -32,7 +32,7 @@
                         <!--{% for event in the_event}-->
                         <tr>
                             <td>
-                                <a href="/deatils/{{event.id}}">{{event.event_name}}</a></td>
+                                <a href="/details/{{event.id}}">{{event.event_name}}</a></td>
                             <td>{{event.location}}</td>
                             <td>{{event.attendees}}</td>
                             <td>{{event.date}}{{event.time}}</td>
@@ -49,6 +49,7 @@
                             <th>Location Name </th>
                             <th>Attendees</th>
                             <th>Time</th>
+                            <!--add actions on the tope table to join-->
                         </tr>
                     </thead>
                     <tbody>
@@ -56,7 +57,7 @@
                             <!--{% if session ['username_id'] == event.userself.id%}-->
                         <tr>
                             <td>
-                                <a href="/deatils/{{event.id}}">{{event.event_name}}</a></td>
+                                <a href="/details/{{event.id}}">{{event.event_name}}</a></td>
                             <td>{{event.location}}</td>
                             <td>{{event.attendees}}</td>
                             <td>{{event.date}}{{event.time}}</td>
