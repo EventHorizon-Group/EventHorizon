@@ -31,18 +31,18 @@ def destroy(id):
     return redirect('/dashboard')
 
 @app.route('/event/details/<int:id>')
-def details(id):
+def event_details(id):
     data ={
         'id': id
     }
-    return render_template ('details.html', event=Event.get_by_id(data))
+    return render_template ('event_details.html', event=Event.get_one(data))
 
 @app.route('/event/edit/<int:id>')
 def update(id):
     data={
         'id': id
     }
-    return render_template ('edit.html', event=Event.get_by_id(data))
+    return render_template ('edit.html', event=Event.get_one(data))
 
 @app.route('/event/update/<int:id>', methods=['POST'])
 def edit(id):
@@ -58,3 +58,7 @@ def edit(id):
     }
     Event.update(data)
     return redirect ('/dashboard')
+
+@app.route('/event/bulletin')
+def event_bulletin():
+    return render_template('bulletin.html', events=Event.get_users_and_events())

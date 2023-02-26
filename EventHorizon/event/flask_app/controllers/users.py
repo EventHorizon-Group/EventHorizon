@@ -47,6 +47,13 @@ def login():
     # never render on a post!!!
     return redirect('/dashboard')
 
+@app.route('/user/details/<int:id>')
+def user_details(id):
+    data = {
+        'id': id
+    }
+    return render_template("user_details.html", user=User.get_by_id(data))
+
 @app.route('/dashboard')
 def dashboard():
     if 'user_id' not in session:
@@ -54,7 +61,7 @@ def dashboard():
     data ={
         'id': session['user_id']
     }
-    return render_template("dashboard.html",user=User.get_by_id(data), events = Event.get_all())
+    return render_template("dashboard.html",user=User.get_by_id(data), events = Event.get_users_and_events())
 
 @app.route('/logout')
 def logout():
