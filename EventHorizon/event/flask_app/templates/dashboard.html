@@ -22,16 +22,16 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>Event Name </th>
+                            <th>Event Name Name </th>
                             <th>Location Name </th>
                             <th>Attendees</th>
                             <th>Time</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {% for event in the_event %}
+                        {% for event in user.join_events %}
                         <tr>
-                            {% if session['user_id'] == event.userself.id %}
+                            {% if session['user_id'] == event.creator.id %}
                             <td>
                                 <a href="/details/{{event.id}}">{{event.event_name}}</a></td>
                             <td>{{event.location}}</td>
