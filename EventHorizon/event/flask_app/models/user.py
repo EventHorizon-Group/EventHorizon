@@ -78,7 +78,7 @@ class User:
                 "updated_at": result["event_name"]
             }
         user.joined_events.append( event.Event( event_data))
-        return event
+        return user
 
     # Static methods don't have self or cls passed into the parameters.
     # We do need to take in a parameter to represent our user
