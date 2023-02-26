@@ -15,7 +15,7 @@ class User:
         self.password = data['password']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
-        self.events = []
+        self.joined_events = []
 
     @classmethod
     def save(cls,data):
@@ -55,7 +55,7 @@ class User:
         LEFT JOIN
             events_users
         ON
-            events.users.users_id = users.id
+            events_users.users_id = users.id
         LEFT JOIN
             events
         ON
@@ -63,7 +63,8 @@ class User:
         WHERE
             users.id = %(id)s;
         """
-        results = connectToMySQL(DB).query_db( query, data )
+        results = connectToMySQL(cls.db).query_db( query, data )
+        print(results)
         user = cls (results [0])
         for result in results:
             event_data = {
@@ -76,7 +77,7 @@ class User:
                 "created_at": result["event_name"],
                 "updated_at": result["event_name"]
             }
-        user.events.append( event.Event( event_data))
+        user.joined_events.append( event.Event( event_data))
         return event
 
     # Static methods don't have self or cls passed into the parameters.

@@ -61,4 +61,4 @@ def edit(id):
 
 @app.route('/event/bulletin')
 def event_bulletin():
-    return render_template('bulletin.html', events=Event.get_users_and_events())
+    return render_template('bulletin.html', events=Event.get_all_events())

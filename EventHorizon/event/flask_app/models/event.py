@@ -14,8 +14,8 @@ class Event:
         self.member_num = data['member_num']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
-        self.userself = None
-        self.on_users = []
+        self.creator = None
+        self.joined_users = []
 
     @classmethod
     def create(cls, data):
@@ -57,7 +57,7 @@ class Event:
                 'updated_at':event['users.updated_at']
             }
             user_obj = user.User(user_data)
-            one_event.userself = user_obj
+            one_event.creator = user_obj
             all_events.append(one_event)
         return all_events
 
@@ -96,7 +96,7 @@ class Event:
                 'created_at':result['users.created_at'],
                 'updated_at':result['users.updated_at']
             }
-            event.on_users.append( user.User( one_user_data ))
+            event.joined_users.append( user.User( one_user_data ))
         return event
     
     @classmethod
@@ -116,7 +116,7 @@ class Event:
             'updated_at':result[0]['users.updated_at']
         }
         user_obj=user.User(one_user_data)
-        row.userself = user_obj
+        row.creator = user_obj
         return row
 
     @classmethod
