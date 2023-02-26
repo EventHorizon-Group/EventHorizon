@@ -39,6 +39,29 @@ class Event:
         return results
 
     @classmethod
+    def get_users_and_events(cls):
+        query = "SELECT * FROM events JOIN users ON users.id = events.users_id;"
+        results = connectToMySQL(DB).query_db(query)
+        print (results)
+        all_events = []
+
+        for event in results:
+            one_event = cls(event)
+            user_data ={
+                'id':event['users.id'], 
+                'first_name':event['first_name'],
+                'last_name':event['last_name'],
+                'email':event['email'],
+                'password':None,
+                'created_at': event['users.created_at'],
+                'updated_at':event['users.updated_at']
+            }
+            user_obj = user.User(user_data)
+            one_event.userself = user_obj
+            all_events.append(one_event)
+        return all_events
+
+    @classmethod
     def destroy (cls, data):
         query = "DELETE FROM events WHERE id = %(id)s;"
         return connectToMySQL(DB).query_db(query, data)
