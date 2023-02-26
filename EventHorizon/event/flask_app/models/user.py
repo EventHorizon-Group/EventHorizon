@@ -3,6 +3,7 @@ import re	# the regex module
 # create a regular expression object that we'll use later   
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 from flask import flash
+from flask_app.models import event
 
 class User:
     db = "family_registration"
@@ -14,7 +15,7 @@ class User:
         self.password = data['password']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
-        
+        self.events = []
 
     @classmethod
     def save(cls,data):
@@ -44,6 +45,39 @@ class User:
         query = "SELECT * FROM users WHERE id = %(id)s;"
         results = connectToMySQL(cls.db).query_db(query,data)
         return cls(results[0])
+    
+    @classmethod
+    def get_user_with_events( cls, data ):
+        query = """
+        SELECT *
+        FROM
+            users
+        LEFT JOIN
+            events_users
+        ON
+            events.users.users_id = users.id
+        LEFT JOIN
+            events
+        ON
+            events_users.events_id = users.id
+        WHERE
+            users.id = %(id)s;
+        """
+        results = connectToMySQL(DB).query_db( query, data )
+        user = cls (results [0])
+        for result in results:
+            event_data = {
+                "id": result["events.id"],
+                "event_name": result["event_name"],
+                "location": result["event_name"],
+                "date": result["event_name"],
+                "description": result["event_name"],
+                "member_num": result["event_name"],
+                "created_at": result["event_name"],
+                "updated_at": result["event_name"]
+            }
+        user.events.append( event.Event( event_data))
+        return event
 
     # Static methods don't have self or cls passed into the parameters.
     # We do need to take in a parameter to represent our user
