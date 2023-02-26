@@ -42,7 +42,14 @@ CREATE TABLE IF NOT EXISTS `event_schema`.`events` (
   `member_num` INT NULL,
   `created_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`))
+  `users_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_events_users1_idx` (`users_id` ASC) VISIBLE,
+  CONSTRAINT `fk_events_users1`
+    FOREIGN KEY (`users_id`)
+    REFERENCES `event_schema`.`users` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
