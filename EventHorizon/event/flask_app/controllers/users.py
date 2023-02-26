@@ -25,6 +25,7 @@ def register():
         "password": bcrypt.generate_password_hash(request.form['password'])
     }
     id = User.save(data)
+    print(id)
     # store user id into session
     session['user_id'] = id
     return redirect('/dashboard')
@@ -61,7 +62,8 @@ def dashboard():
     data ={
         'id': session['user_id']
     }
-    return render_template("dashboard.html",user=User.get_by_id(data), events = Event.get_users_and_events())
+
+    return render_template("dashboard.html",user=User.get_user_with_events(data))
 
 @app.route('/logout')
 def logout():
