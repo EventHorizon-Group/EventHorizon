@@ -29,14 +29,17 @@
                         </tr>
                     </thead>
                     <tbody>
-                        
+                        {% for event in the_event %}
                         <tr>
+                            {% if session['user_id'] == event.userself.id %}
                             <td>
                                 <a href="/details/{{event.id}}">{{event.event_name}}</a></td>
                             <td>{{event.location}}</td>
                             <td>{{event.member_num}}</td>
                             <td>{{event.date}}{{event.time}}</td>
                         </tr>
+                            {% endif %}
+                        {% endfor %}
                     </tbody>
                 </table>
             </div>

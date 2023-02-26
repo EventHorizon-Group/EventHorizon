@@ -21,10 +21,10 @@
                 {% for event in events %}
                 <tr>
                     <td>
-                        <a href="/details/{{event.id}}">{{event.event_name}}</a></td>
-                    <td>{{event.location}}</td>
-                    <td>{{event.member_num}}</td>
-                    <td>{{event.date}}{{event.time}}</td>
+                        <a href="/details/{{event.id}}">{{events.event_name}}</a></td>
+                    <td>{{events.location}}</td>
+                    <td>{{events.member_num}}</td>
+                    <td>{{events.date}}{{events.time}}</td>
                 </tr>
                 {% endfor %}
             </tbody>
