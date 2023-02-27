@@ -11,7 +11,7 @@ def create():
 @app.route ('/event/create', methods = ['POST'])
 def user_create():
     if not Event.validate_register(request.form):
-        return redirect ('/create')
+        return redirect ('/event/create')
 
     data={
         'event_name': request.form ['event_name'],
