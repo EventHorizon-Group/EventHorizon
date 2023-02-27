@@ -29,7 +29,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for event in user.join_events %}
+                        {% for event in user.joined_events %}
                         <tr>
                             {% if session['user_id'] == event.creator.id %}
                             <td>
