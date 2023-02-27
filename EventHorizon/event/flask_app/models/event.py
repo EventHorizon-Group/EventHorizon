@@ -2,7 +2,7 @@ from flask_app.config.mysqlconnection import connectToMySQL
 from flask import flash
 from flask_app.models import user
 
-DB = "event_schema"
+DB = "event_horizon"
 
 class Event:
     def __init__(self,data):
@@ -162,7 +162,7 @@ class Event:
             flash("Description must be at least 3 characters")
             is_valid= False
 
-        if tv['member_num'] < 1:
+        if tv['member_num'] is None:
             flash("Max Members need to be at least 1")
             is_valid= False
 
