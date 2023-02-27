@@ -7,7 +7,8 @@ from flask_app.models.event import Event
 def create():
     return render_template('create.html')
 
-@app.route ('/create', methods = ['POST'])
+
+@app.route ('/event/create', methods = ['POST'])
 def user_create():
     if not Event.validate_register(request.form):
         return redirect ('/create')
