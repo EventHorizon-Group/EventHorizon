@@ -48,21 +48,21 @@ class User:
     
     @classmethod
     def get_user_with_events( cls, data ):
-        query = """
-        SELECT *
-        FROM
-            users
-        LEFT JOIN
-            events_users
-        ON
-            events_users.users_id = users.id
-        LEFT JOIN
-            events
-        ON
-            events_users.events_id = users.id
-        WHERE
-            users.id = %(id)s;
-        """
+        query ="""
+            SELECT *
+            FROM
+                users
+            LEFT JOIN
+                events_users
+            ON
+                events_users.users_id = users.id
+            LEFT JOIN
+                events
+            ON
+                events_users.events_id = users.id
+            WHERE
+                users.id = %(id)s;
+            """
         results = connectToMySQL(cls.db).query_db( query, data )
         print(results)
         user = cls (results [0])

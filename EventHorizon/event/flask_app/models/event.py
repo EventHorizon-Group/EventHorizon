@@ -37,7 +37,13 @@ class Event:
                 %(users_id)s);
             """
         results = connectToMySQL(DB).query_db(query, data)
-        self.creator = User.get_by_id(session["user_id"])
+        one_event = Event.get_one(results)
+        one_event.joined_users.append(User.get_by_id(session["user_id"]))
+        one_event.creator = User.get_by_id(session["user_id"])
+        print("creator")
+        print(one_event.creator)
+        print("joined users")
+        print(one_event.joined_users)
         print (results)
         return results
 
