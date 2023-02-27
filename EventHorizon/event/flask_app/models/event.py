@@ -2,7 +2,7 @@ from flask_app.config.mysqlconnection import connectToMySQL
 from flask import flash
 from flask_app.models import user
 
-DB = "event_horizon"
+DB = "event_schema"
 
 class Event:
     def __init__(self,data):
@@ -26,15 +26,18 @@ class Event:
                     location, 
                     date, 
                     description, 
-                    member_num) 
+                    member_num,
+                    users_id) 
             VALUES 
                 (%(event_name)s, 
                 %(location)s,
                 %(date)s,
                 %(description)s, 
-                %(member_num)s;
+                %(member_num)s,
+                %(users_id)s);
             """
-        results = connectToMySQL(DB).query_db(query,data)
+        results = connectToMySQL(DB).query_db(query, data)
+        self.creator = User.get_by_id(session["user_id"])
         print (results)
         return results
 

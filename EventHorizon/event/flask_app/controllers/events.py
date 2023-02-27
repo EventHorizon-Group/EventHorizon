@@ -18,7 +18,8 @@ def user_create():
         'description': request.form ['description'],
         'member_num': request.form['member_num'],
         'location': request.form['location'],
-        'date': request.form['date']
+        'date': request.form['date'],
+        'users_id': session['user_id']
     }
     Event.create(data)
     return redirect ('/dashboard')
