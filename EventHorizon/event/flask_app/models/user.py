@@ -6,7 +6,7 @@ from flask import flash
 from flask_app.models import event
 
 class User:
-    db = "event_schema"
+    db = "event_horizon"
     def __init__(self,data):
         self.id = data['id']
         self.first_name = data['first_name']

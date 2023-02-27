@@ -9,8 +9,23 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-
+    <br>
+    <br>
+    <h2 class="text-center text-success">Add a New Event!</h2>
+    <div class="container">
+        <a class="btn btn-primary" href="/dashboard">Home</a>
+        <a class="btn btn-danger float-right" href="/logout">Logout</a>
+    </div>
     <form action="/event/update/{{event.id}}" method="post">
+        <div class="alert alert-success" role="alert">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p>{{message}}</p>
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
+        <div>
         <div>
             <label>Event Name:</label>
             <input type="text" name="event_name" value="{{event.event_name}}"/>
@@ -24,11 +39,15 @@
             <input type="date" name="date" id="date" value="{{event.date}}" />
         </div>
         <div>
+            <label>Members </label>
+            <input name="member_num" type="number" value="{{event.member_num}}">
+        </div>
+        <div>
             <label>Location</label>
             <input type="text" name="location">
         </div>
         <div>
-            <!--members-->
+
         </div>
         <input type="submit" value="Add">
     </form>

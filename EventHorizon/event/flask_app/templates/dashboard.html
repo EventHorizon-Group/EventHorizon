@@ -19,9 +19,9 @@
         </div>
         <div>
             <div>
-                <table>
+                <table class="table table-bordered container">
                     <thead>
-                        <tr>
+                        <tr class="table-light">
                             <th>Event Name Name </th>
                             <th>Location Name </th>
                             <th>Attendees</th>
@@ -33,7 +33,7 @@
                         <tr>
                             {% if session['user_id'] == event.creator.id %}
                             <td>
-                                <a href="/details/{{event.id}}">{{event.event_name}}</a></td>
+                                <a href="/event/details/{{event.id}}">{{event.event_name}}</a></td>
                             <td>{{event.location}}</td>
                             <td>{{event.member_num}}</td>
                             <td>{{event.date}}{{event.time}}</td>
