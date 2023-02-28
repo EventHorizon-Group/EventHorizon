@@ -13,7 +13,12 @@ def user_create():
     if not Event.validate_register(request.form):
         return redirect ('/event/create')
 
-    data={
+    user_data = {
+        'id': session["user_id"]
+    }
+    logged_in_user = User.get_by_id(user_data)
+
+    create_data={
         'event_name': request.form ['event_name'],
         'description': request.form ['description'],
         'member_num': request.form['member_num'],
@@ -21,7 +26,15 @@ def user_create():
         'date': request.form['date'],
         'users_id': session['user_id']
     }
-    Event.create(data)
+    event_id = Event.create(create_data)
+
+    add_data = {
+        "id": event_id
+    }
+    event = Event.get_one(add_data)
+    event.creator = logged_in_user
+    event.joined_users.append(logged_in_user)
+
     return redirect ('/dashboard')
 
 @app.route('/event/destroy/<int:id>')
