@@ -17,11 +17,12 @@
             <a class="btn btn-primary" href="/event/new">+ Create</a>
             <a class="btn btn-danger float-right" href="/logout">Logout</a>
         </div>
+        <br>
         <div>
             <div>
                 <table class="table table-bordered container">
                     <thead>
-                        <tr class="table-light">
+                        <tr class="table-primary">
                             <th>Event Name Name </th>
                             <th>Location Name </th>
                             <th>Attendees</th>
@@ -30,7 +31,7 @@
                     </thead>
                     <tbody>
                         {% for event in user.joined_events %}
-                        <tr class="table-light">
+                        <tr class="table-warning">
                             <td><a href="/event/details/{{event.id}}">{{event.event_name}}</a></td>
                             <td>{{event.location}}</td>
                             <td>{{event.member_num}}</td>
