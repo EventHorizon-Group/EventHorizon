@@ -15,7 +15,7 @@
         <h1 class="text-center text-primary">Welcome to Event Horizon {{user.first_name}}!</h1>
         <div class="container">
             <a class="btn btn-primary" href="/event/new">+ Create</a>
-            <a class="btn btn-primary" href="/event/bulletin"> More Event </a>
+            <a class="btn btn-primary" href="/event/bulletin"> More Events </a>
             <a class="btn btn-danger float-right" href="/logout">Logout</a>
         </div>
         <br>
@@ -37,7 +37,7 @@
                             <td><a href="/event/details/{{event.id}}">{{event.event_name}}</a></td>
                             <td>{{event.location}}</td>
                             <td>{{event.member_num}}</td>
-                            <td>{{event.date}}</td>
+                            <td>{{event.date.strftime('%m/%d/%Y')}}</td>
                             <th> <a href="/event/destroy/{{event.id}}"> Cancel Event </a></th>
                         </tr>
                         {% endfor %}
