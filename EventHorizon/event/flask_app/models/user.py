@@ -49,35 +49,42 @@ class User:
     @classmethod
     def get_user_with_events( cls, data ):
         query ="""
-            SELECT *
-            FROM
-                users
-            LEFT JOIN
-                events_users
-            ON
-                events_users.users_id = users.id
-            LEFT JOIN
-                events
-            ON
-                events_users.events_id = users.id
-            WHERE
-                users.id = %(id)s;
+            SELECT * FROM users
+            LEFT JOIN events_users ON events_users.users_id = users.id
+            LEFT JOIN events ON events_users.events_id = events.id
+            WHERE users.id = %(id)s;
             """
+            # "SELECT *
+            #  FROM 
+            #       users 
+            # LEFT JOIN 
+            #       likes 
+            # ON 
+            #       users.id = likes.user_id 
+            # LEFT JOIN 
+            #       thoughts 
+            # ON 
+            #       likes.thought_id = thoughts.id 
+            # WHERE 
+            #       users.id = %(id)s;"
         results = connectToMySQL(cls.db).query_db( query, data )
+        print("results")
         print(results)
         user = cls (results [0])
+        print("Event Data")
         for result in results:
             event_data = {
                 "id": result["events.id"],
                 "event_name": result["event_name"],
-                "location": result["event_name"],
-                "date": result["event_name"],
-                "description": result["event_name"],
-                "member_num": result["event_name"],
-                "created_at": result["event_name"],
-                "updated_at": result["event_name"]
+                "location": result["location"],
+                "date": result["date"],
+                "description": result["description"],
+                "member_num": result["member_num"],
+                "created_at": result["created_at"],
+                "updated_at": result["updated_at"]
             }
-        user.joined_events.append( event.Event( event_data))
+            print(event_data)
+            user.joined_events.append(event_data)
         return user
 
     # Static methods don't have self or cls passed into the parameters.
@@ -106,3 +113,4 @@ class User:
         if user['password'] != user['confirm']:
             flash("Passwords don't match","register")
         return is_valid
+

@@ -69,3 +69,4 @@ def dashboard():
 def logout():
     session.clear()
     return redirect('/')
+
