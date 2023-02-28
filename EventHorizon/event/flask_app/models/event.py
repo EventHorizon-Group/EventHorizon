@@ -142,6 +142,17 @@ class Event:
             """
         return connectToMySQL(DB).query_db(query,data)
 
+    @classmethod
+    def add_memeber(cls,data):
+        query = "INSERT INTO events_users (events_id, users_id) VALUES (%(events_id)s, %(users_id)s);"
+        member_id = connectToMySQL(DB).query_db(query, data)
+        return member_id
+
+    @classmethod
+    def remove_member(cls,data):
+        query = "DELETE FROM events_users WHERE users_id = %(users_id)s AND events_id = %(events_id)s;"
+        return connectToMySQL(DB).query_db(query, data)
+
 
     @staticmethod
     def validate_register(tv):

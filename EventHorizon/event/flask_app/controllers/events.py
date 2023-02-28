@@ -13,10 +13,6 @@ def user_create():
     if not Event.validate_register(request.form):
         return redirect ('/event/create')
 
-    user_data = {
-        'id': session["user_id"]
-    }
-    logged_in_user = User.get_by_id(user_data)
 
     create_data={
         'event_name': request.form ['event_name'],
@@ -28,12 +24,12 @@ def user_create():
     }
     event_id = Event.create(create_data)
 
-    add_data = {
-        "id": event_id
+    add_member_data = {
+        "events_id": event_id,
+        "users_id": session['user_id']
     }
-    event = Event.get_one(add_data)
-    event.creator = logged_in_user
-    event.joined_users.append(logged_in_user)
+
+    Event.add_memeber(add_member_data)
 
     return redirect ('/dashboard')
 
@@ -76,4 +72,4 @@ def edit(id):
 
 @app.route('/event/bulletin')
 def event_bulletin():
-    return render_template('bulletin.html', events=Event.get_all_events())
+    return render_template('bulletin.html', events=Event.get_users_and_events())
