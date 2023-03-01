@@ -15,7 +15,9 @@
     <div class="container">
         <a class="btn btn-primary" href="/dashboard">Home</a>
         <a class="btn btn-danger float-right" href="/logout">Logout</a>
+        {% if session['users_id'] == event.creator.id %}
         <a class="btn btn-danger" href="/event/edit/{{event.id}}"> Make Changes </a>
+        {% endif %}
     </div>
     <br>
     <div class="container">
