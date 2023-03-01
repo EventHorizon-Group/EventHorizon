@@ -40,9 +40,9 @@ class Event:
         return results
 
     @classmethod
-    def get_users_and_events(cls):
-        query = "SELECT * FROM events JOIN users ON users.id = events.users_id;"
-        results = connectToMySQL(DB).query_db(query)
+    def get_users_and_events(cls, data):
+        query = "SELECT * FROM events JOIN users ON users.id = events.users_id WHERE users_id != %(id)s;"
+        results = connectToMySQL(DB).query_db(query, data)
         print (results)
         all_events = []
 

@@ -95,7 +95,7 @@ def event_bulletin():
     }
 
     logged_in_user=User.get_user_with_events(data)
-    events=Event.get_users_and_events()
+    events=Event.get_users_and_events(data)
 
     print(logged_in_user.joined_events)
     print(events)
