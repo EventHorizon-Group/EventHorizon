@@ -18,19 +18,27 @@
             <a  class="btn btn-primary" href="/event/bulletin">Bulletin</a>
             <a class="btn btn-danger float-right" href="/logout">Logout</a>
         </div>
-        <div class="container">
-            <div class="col-6 mx-a">
-                <h2> Creator Information </h2>
-                    <label>Name:</label>
-                    <p>{{ user.first_name }}</p>
-                    <label>Email:</label>
-                    <p>{{ user.email }}</p>
-                    <p>{{ user.first_name }}</p>
-                    <label> Events Attending </label>
-                    <ul>
-                        
-                    </ul>
+        <div class="container card-body center">
+            <div class="card text-white bg-info mb-3 center" style="max-width: 40rem;">
+                <div class="card-header"> <h2> Creator's Information</h2></div>
+                <div class="card-body">
+                    <h5 class="card-title"> Name: </h5>
+                    <p class="card-text"> {{user.first_name}} </p>
+                    <h5 class="card-title"> Email: </h5>
+                    <p class="card-text"> {{user.email}} </p>
+                </div>
             </div>
+            <div class="card" style="width: 40rem;">
+                <div class="card-header">
+                    <h4 class="text-color bg-info"> Events attending  </h4>
+                </div>
+                {% for event in all_user.joined_events %}
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"> <a href="/event/details/{{event.id}}"> {{event.event_name}}</a> </li>
+                    </ul>
+                {% endfor %}
+            </div>
+                    
         </div>
     </div>
 
