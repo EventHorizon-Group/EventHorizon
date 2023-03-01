@@ -20,13 +20,13 @@ def user_create():
         'member_num': request.form['member_num'],
         'location': request.form['location'],
         'date': request.form['date'],
-        'users_id': session['users_id']
+        'users_id': session['user_id']
     }
     event_id = Event.create(create_data)
 
     add_member_data = {
         "events_id": event_id,
-        "users_id": session['users_id']
+        "users_id": session['user_id']
     }
 
     Event.add_memeber(add_member_data)
