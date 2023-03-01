@@ -64,6 +64,9 @@ class Event:
 
     @classmethod
     def destroy (cls, data):
+        query0 = "DELETE FROM events_users WHERE events_id = %(id)s;"
+        connectToMySQL(DB).query_db(query0, data)
+
         query = "DELETE FROM events WHERE id = %(id)s;"
         return connectToMySQL(DB).query_db(query, data)
     
