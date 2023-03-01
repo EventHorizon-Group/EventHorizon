@@ -19,7 +19,7 @@
             </thead>
             <tbody>
                 {% for event in events %}
-                    {% if event.date != None %}
+                {% if event.date != None %}
                         {% if event.id not in logged_in_user.joined_events %}
                             <tr class="table-warning">
                                 <td><a href="/event/details/{{event.id}}">{{event.event_name}}</a></td>

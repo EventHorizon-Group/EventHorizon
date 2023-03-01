@@ -9,28 +9,34 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
+    <br>
+    <br>
+    <div class="background">
+        <h1 class="text-center"> About {{user.first_name}}</h1>
+        <div class = "navBar container">
+            <a  class="btn btn-primary" href="/dashboard">Home</a>
+            <a  class="btn btn-primary" href="/event/bulletin">Bulletin</a>
+            <a class="btn btn-danger float-right" href="/logout">Logout</a>
+        </div>
+        <div class="container">
+                <label>Name:</label>
+            <p>{{ user.first_name }}</p>
+        <label>Email:</label>
+            <p>{{ user.email }}</p>
 
-    <div class = "navBar">
-        <a href="/dashboard">Home</a>
-        <a href="/event/new">New</a>
-        <a href="/event/bulletin">Bulletin</a>
-        <a href="/user/details/{{ session['user_id'] }}">Account</a>
+        {% if session['user_id'] == user.id %}
+
+            <a href=#>Edit</a>
+
+        {% endif %}
+
+        <label>Events</label>
+            <p>{{ user.first_name }}</p>
+
+
+
+        </div>
     </div>
-
-    <label>Name:</label>
-        <p>{{ user.first_name }}</p>
-    <label>Email:</label>
-        <p>{{ user.email }}</p>
-
-    {% if session['user_id'] == user.id %}
-
-        <a href=#>Edit</a>
-
-    {% endif %}
-
-    <label>Events</label>
-        <p>{{ user.first_name }}</p>
-
 
 
 </body>
