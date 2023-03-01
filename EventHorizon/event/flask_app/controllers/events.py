@@ -55,6 +55,24 @@ def update(id):
     }
     return render_template ('edit.html', event=Event.get_one(data))
 
+@app.route('/event/join/<int:id>')
+def join_event(id):
+    data = {
+        "events_id": id,
+        "users_id": session["user_id"]
+    }
+    Event.add_memeber(data)
+    return redirect('/dashboard')
+
+@app.route('/event/leave/<int:id>')
+def leave_event(id):
+    data = {
+        "events_id": id,
+        "users_id": session["user_id"]
+    }
+    Event.remove_memeber(data)
+    return redirect('/dashboard')
+
 @app.route('/event/update/<int:id>', methods=['POST'])
 def edit(id):
     if not Event.validate_register(request.form):
