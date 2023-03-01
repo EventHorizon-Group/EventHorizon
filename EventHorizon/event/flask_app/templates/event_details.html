@@ -15,7 +15,9 @@
     <div class="container">
         <a class="btn btn-primary" href="/dashboard">Home</a>
         <a class="btn btn-danger float-right" href="/logout">Logout</a>
+        {% if session['users_id'] == event.creator.id %}
         <a class="btn btn-danger" href="/event/edit/{{event.id}}"> Make Changes </a>
+        {% endif %}
     </div>
     <br>
     <div class="container">
@@ -53,16 +55,18 @@
                     <p class="mb-1">{{event.member_num}}</p>
                 </a>
             </div>
+            <div class="m-3 mx-auto col-6">
                 <iframe
-                width="600"
-                height="450"
+                width="500"
+                height="350"
                 style="border:0"
                 loading="lazy"
                 allowfullscreen
                 referrerpolicy="no-referrer-when-downgrade"
-                src="https://www.google.com/maps/embed/v1/place?key=API_KEY
+                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCheoTLc2UKAQxCRpTxGtlFaa3B6ycSId8
                     &q=Space+Needle,Seattle+WA">
                 </iframe>
+            </div>
         </form>
     </div>
 </body>
