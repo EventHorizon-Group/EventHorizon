@@ -69,24 +69,19 @@ class User:
             # WHERE 
             #       users.id = %(id)s;"
         results = connectToMySQL(cls.db).query_db( query, data )
-        print("results")
-        print(results)
         user = cls (results [0])
-        print("Event Data")
         for result in results:
             event_data = {
                 "id": result["events.id"],
-                # "event_name": result["event_name"],
-                # "location": result["location"],
-                # "date": result["date"],
-                # "description": result["description"],
-                # "member_num": result["member_num"],
-                # "created_at": result["created_at"],
-                # "updated_at": result["updated_at"]
+                "event_name": result["event_name"],
+                "location": result["location"],
+                "date": result["date"],
+                "description": result["description"],
+                "member_num": result["member_num"],
+                "created_at": result["created_at"],
+                "updated_at": result["updated_at"]
             }
-            joined_event = event.Event.get_one(event_data)
-            print(event_data)
-            user.joined_events.append(joined_event)
+            user.joined_events.append(event_data)
         return user
 
     # Static methods don't have self or cls passed into the parameters.

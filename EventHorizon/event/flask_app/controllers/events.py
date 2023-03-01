@@ -82,11 +82,11 @@ def event_bulletin():
     print(logged_in_user.joined_events)
     print(events)
 
-    for event in events:
-        if event not in logged_in_user.joined_events:
-            print("User has NOT joined event")
-        else:
-            print("User has joined Event")
+    # for event in events:
+    #     if event not in logged_in_user.joined_events:
+    #         print("User has NOT joined event")
+    #     else:
+    #         print("User has joined Event")
         
     
 
