@@ -24,7 +24,7 @@
                 <table class="table table-bordered container">
                     <thead>
                         <tr class="table-primary">
-                            <th>Event Name Name </th>
+                            <th>Event Name </th>
                             <th>Location Name </th>
                             <th>Attendees</th>
                             <th>Time</th>
@@ -39,7 +39,11 @@
                             <td>{{event.location}}</td>
                             <td>{{event.member_num}}</td>
                             <td>{{event.date.strftime('%m/%d/%Y')}}</td>
-                            <th> <a href="/event/destroy/{{event.id}}"> Cancel Event </a></th>
+                            <th> 
+                                <a href="/event/edit/{{event.id}}">Edit</a>
+                                <br>
+                                <a href="/event/destroy/{{event.id}}">Cancel</a>
+                            </th>
                         </tr>
                         {% endif %}
                         {% endfor %}
