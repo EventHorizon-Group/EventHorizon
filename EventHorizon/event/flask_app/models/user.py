@@ -16,6 +16,7 @@ class User:
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
         self.joined_events = []
+        self.name = self.first_name + " " + self.last_name
 
     @classmethod
     def save(cls,data):
