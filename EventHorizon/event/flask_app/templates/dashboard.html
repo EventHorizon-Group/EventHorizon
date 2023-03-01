@@ -13,11 +13,13 @@
     <br>
     <div class="background">
         <h1 class="text-center text-primary">Welcome to Event Horizon {{user.first_name}}!</h1>
+        <br>
         <div class="container">
             <a class="btn btn-primary" href="/event/new">+ Create</a>
             <a class="btn btn-primary" href="/event/bulletin"> More Events </a>
             <a class="btn btn-danger float-right" href="/logout">Logout</a>
         </div>
+        <h3 class="text-center text-primary">My Events</h3>
         <br>
         <div>
             <div>
@@ -33,19 +35,19 @@
                     </thead>
                     <tbody>
                         {% for event in user.joined_events %}
-                        {% if event.date != None %}
-                        <tr class="table-warning">
-                            <td><a href="/event/details/{{event.id}}">{{event.event_name}}</a></td>
-                            <td>{{event.location}}</td>
-                            <td>{{event.member_num}}</td>
-                            <td>{{event.date.strftime('%m/%d/%Y')}}</td>
-                            <th> 
-                                <a href="/event/edit/{{event.id}}">Edit</a>
-                                <br>
-                                <a href="/event/destroy/{{event.id}}">Cancel</a>
-                            </th>
-                        </tr>
-                        {% endif %}
+                            {% if event.date != None %}
+                                <tr class="table-warning">
+                                    <td><a href="/event/details/{{event.id}}">{{event.event_name}}</a></td>
+                                    <td>{{event.location}}</td>
+                                    <td>{{event.member_num}}</td>
+                                    <td>{{event.date.strftime('%m/%d/%Y')}}</td>
+                                    <th> 
+                                        <a href="/event/edit/{{event.id}}">Edit</a>
+                                        <br>
+                                        <a href="/event/destroy/{{event.id}}">Cancel</a>
+                                    </th>
+                                </tr>
+                            {% endif %}
                         {% endfor %}
                     </tbody>
                 </table>

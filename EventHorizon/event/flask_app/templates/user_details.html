@@ -19,22 +19,18 @@
             <a class="btn btn-danger float-right" href="/logout">Logout</a>
         </div>
         <div class="container">
-                <label>Name:</label>
-            <p>{{ user.first_name }}</p>
-        <label>Email:</label>
-            <p>{{ user.email }}</p>
-
-        {% if session['user_id'] == user.id %}
-
-            <a href=#>Edit</a>
-
-        {% endif %}
-
-        <label>Events</label>
-            <p>{{ user.first_name }}</p>
-
-
-
+            <div class="col-6 mx-a">
+                <h2> Creator Information </h2>
+                    <label>Name:</label>
+                    <p>{{ user.first_name }}</p>
+                    <label>Email:</label>
+                    <p>{{ user.email }}</p>
+                    <p>{{ user.first_name }}</p>
+                    <label> Events Attending </label>
+                    <ul>
+                        
+                    </ul>
+            </div>
         </div>
     </div>
 
