@@ -53,7 +53,7 @@ def user_details(id):
     data = {
         'id': id
     }
-    return render_template("user_details.html", user=User.get_by_id(data))
+    return render_template("user_details.html", user=User.get_by_id(data), all_user=User.get_user_with_events(data))
 
 @app.route('/dashboard')
 def dashboard():
