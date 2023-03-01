@@ -37,14 +37,14 @@
                         {% for event in user.joined_events %}
                             {% if event.date != None %}
                                 <tr class="table-warning">
-                                    <td><a href="/event/details/{{event.id}}">{{event.event_name}}</a></td>
+                                    <td><a href="/event/details/{{ event.id }}">{{event.event_name}}</a></td>
                                     <td>{{event.location}}</td>
                                     <td>{{event.member_num}}</td>
                                     <td>{{event.date.strftime('%m/%d/%Y')}}</td>
                                     <th> 
-                                        <a href="/event/edit/{{event.id}}">Edit</a>
+                                        <a href="/event/edit/{{ event.id }}">Edit</a>
                                         <br>
-                                        <a href="/event/destroy/{{event.id}}">Cancel</a>
+                                        <a href="/event/destroy/{{ event.id }}">Cancel</a>
                                     </th>
                                 </tr>
                             {% endif %}
