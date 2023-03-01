@@ -32,16 +32,17 @@
             </thead>
             <tbody>
                 {% for event in events %}
-                    {% if event not in logged_in_user.joined_events %}
-                        <tr class="table-warning">
-                            <td>
-                                <a href="/event/details/{{event.id}}">{{event.event_name}}</a></td>
-                            <td>{{event.location}}</td>
-                            <td><a href="/user/details/{{logged_in_user.id}}">{{event.creator.name}}</a></td>
-                            <td>{{event.member_num}}</td>
-                            <td>{{event.date.strftime('%m/%d/%Y')}}</td>
-                            <td> <a href="/event/join/{{event.id}}">Join</a></td>
-                        </tr>
+                    {% if event.date != None %}
+                        {% if event.id not in logged_in_user.joined_events %}
+                            <tr class="table-warning">
+                                <td><a href="/event/details/{{event.id}}">{{event.event_name}}</a></td>
+                                <td>{{event.location}}</td>
+                                <td><a href="/user/details/{{logged_in_user.id}}">{{event.creator.name}}</a></td>
+                                <td>{{event.member_num}}</td>
+                                <td>{{event.date.strftime('%m/%d/%Y')}}</td>
+                                <td> <a href="/event/join/{{event.id}}">Join</a></td>
+                            </tr>
+                        {% endif %}
                     {% endif %}
                 {% endfor %}
             </tbody>
