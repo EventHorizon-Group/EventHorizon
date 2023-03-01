@@ -79,10 +79,14 @@ def event_bulletin():
     logged_in_user=User.get_user_with_events(data)
     events=Event.get_users_and_events()
 
-    # for event in events:
-    #     for user_event in logged_in_user.joined_events:
-    #         if (event.event_name == user_event.get("event_name")):
-    #             print("User has joined event")
+    print(logged_in_user.joined_events)
+    print(events)
+
+    for event in events:
+        if event not in logged_in_user.joined_events:
+            print("User has NOT joined event")
+        else:
+            print("User has joined Event")
         
     
 
