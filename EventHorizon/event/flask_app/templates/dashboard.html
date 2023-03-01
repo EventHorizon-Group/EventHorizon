@@ -33,6 +33,7 @@
                     </thead>
                     <tbody>
                         {% for event in user.joined_events %}
+                        {% if event.date != None %}
                         <tr class="table-warning">
                             <td><a href="/event/details/{{event.id}}">{{event.event_name}}</a></td>
                             <td>{{event.location}}</td>
@@ -40,6 +41,7 @@
                             <td>{{event.date.strftime('%m/%d/%Y')}}</td>
                             <th> <a href="/event/destroy/{{event.id}}"> Cancel Event </a></th>
                         </tr>
+                        {% endif %}
                         {% endfor %}
                     </tbody>
                 </table>
