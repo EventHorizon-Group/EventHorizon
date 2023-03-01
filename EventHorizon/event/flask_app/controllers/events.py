@@ -53,6 +53,7 @@ def update(id):
     data={
         'id': id
     }
+    
     return render_template ('edit.html', event=Event.get_one(data))
 
 @app.route('/event/join/<int:id>')
