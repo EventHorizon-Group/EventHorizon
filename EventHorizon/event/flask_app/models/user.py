@@ -68,9 +68,15 @@ class User:
                 # "created_at": result["created_at"],
                 # "updated_at": result["updated_at"]
             }
+            
             user_data = {
                 "id": result["events.users_id"]
             }
+
+            if event_data == {'id': None}:
+
+                return
+             
 
             user_event = event.Event.get_one(event_data)
             user_event.creator = User.get_by_id(user_data)
