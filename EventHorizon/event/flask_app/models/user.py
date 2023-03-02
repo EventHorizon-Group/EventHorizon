@@ -74,6 +74,7 @@ class User:
 
             if event_data == {'id': None}:
                 return
+            
             user_event = event.Event.get_one(event_data)
             user_event.creator = User.get_by_id(user_data)
             user.joined_events.append(user_event)
