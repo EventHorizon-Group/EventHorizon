@@ -94,18 +94,4 @@ def event_bulletin():
     data = {
         'id': session["user_id"]
     }
-
-    logged_in_user=User.get_joined_events_id(data)
-    events=Event.get_users_and_events(data)
-
-    print(logged_in_user.joined_events)
-    print(events)
-
-    for event in events:
-        if event.id in logged_in_user.joined_events:
-            print(event.id)
-            
-        
-    
-
-    return render_template('bulletin.html', events=events, logged_in_user=logged_in_user)
+    return render_template('bulletin.html', events=Event.get_users_and_events(data), logged_in_user=User.get_joined_events_id(data))
