@@ -63,7 +63,7 @@ def join_event(id):
         "users_id": session["user_id"]
     }
     Event.add_memeber(data)
-    return redirect('/dashboard')
+    return redirect('/event/bulletin')
 
 @app.route('/event/leave/<int:id>')
 def leave_event(id):
@@ -71,8 +71,8 @@ def leave_event(id):
         "events_id": id,
         "users_id": session["user_id"]
     }
-    Event.remove_memeber(data)
-    return redirect('/dashboard')
+    Event.remove_member(data)
+    return redirect('/event/bulletin')
 
 @app.route('/event/update/<int:id>', methods=['POST'])
 def edit(id):
@@ -94,19 +94,4 @@ def event_bulletin():
     data = {
         'id': session["user_id"]
     }
-
-    logged_in_user=User.get_user_with_events(data)
-    events=Event.get_users_and_events(data)
-
-    print(logged_in_user.joined_events)
-    print(events)
-
-    # for event in events:
-    #     if event not in logged_in_user.joined_events:
-    #         print("User has NOT joined event")
-    #     else:
-    #         print("User has joined Event")
-        
-    
-
-    return render_template('bulletin.html', events=events, logged_in_user=logged_in_user)
+    return render_template('bulletin.html', events=Event.get_users_and_events(data), logged_in_user=User.get_joined_events_id(data))

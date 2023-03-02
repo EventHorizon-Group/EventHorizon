@@ -43,9 +43,7 @@ class Event:
     def get_users_and_events(cls, data):
         query = "SELECT * FROM events JOIN users ON users.id = events.users_id WHERE users_id != %(id)s;"
         results = connectToMySQL(DB).query_db(query, data)
-        print (results)
         all_events = []
-
         for event in results:
             one_event = cls(event)
             user_data ={
