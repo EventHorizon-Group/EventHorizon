@@ -55,19 +55,6 @@ class User:
             LEFT JOIN events ON events_users.events_id = events.id
             WHERE users.id = %(id)s;
             """
-            # "SELECT *
-            #  FROM 
-            #       users 
-            # LEFT JOIN 
-            #       likes 
-            # ON 
-            #       users.id = likes.user_id 
-            # LEFT JOIN 
-            #       thoughts 
-            # ON 
-            #       likes.thought_id = thoughts.id 
-            # WHERE 
-            #       users.id = %(id)s;"
         results = connectToMySQL(cls.db).query_db( query, data )
         user = cls (results [0])
         for result in results:
@@ -82,6 +69,20 @@ class User:
                 "updated_at": result["updated_at"]
             }
             user.joined_events.append(event_data)
+        return user
+
+    @classmethod
+    def get_joined_events_id( cls, data ):
+        query ="""
+            SELECT * FROM users
+            LEFT JOIN events_users ON events_users.users_id = users.id
+            LEFT JOIN events ON events_users.events_id = events.id
+            WHERE users.id = %(id)s;
+            """
+        results = connectToMySQL(cls.db).query_db( query, data )
+        user = cls (results [0])
+        for result in results:
+            user.joined_events.append(result["events.id"])
         return user
 
     # Static methods don't have self or cls passed into the parameters.
