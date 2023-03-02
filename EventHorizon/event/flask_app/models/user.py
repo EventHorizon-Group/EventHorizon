@@ -73,6 +73,7 @@ class User:
             }
 
             if event_data == {'id': None}:
+                
                 return
             
             user_event = event.Event.get_one(event_data)
