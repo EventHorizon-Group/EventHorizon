@@ -5,11 +5,15 @@ from flask_app.models.event import Event
 
 @app.route ('/event/new')
 def create():
+    if 'user_id' not in session:
+        return redirect('/logout')
     return render_template('create.html')
 
 
 @app.route ('/event/create', methods = ['POST'])
 def user_create():
+    if 'user_id' not in session:
+        return redirect('/logout')
     if not Event.validate_register(request.form):
         return redirect ('/event/create')
 
@@ -35,6 +39,8 @@ def user_create():
 
 @app.route('/event/destroy/<int:id>')
 def destroy(id):
+    if 'user_id' not in session:
+        return redirect('/logout')
     data ={
         'id': id
     }
@@ -43,6 +49,8 @@ def destroy(id):
 
 @app.route('/event/details/<int:id>')
 def event_details(id):
+    if 'user_id' not in session:
+        return redirect('/logout')
     data ={
         'id': id
     }
@@ -50,6 +58,8 @@ def event_details(id):
 
 @app.route('/event/edit/<int:id>')
 def update(id):
+    if 'user_id' not in session:
+        return redirect('/logout')
     data={
         'id': id
     }
@@ -58,6 +68,8 @@ def update(id):
 
 @app.route('/event/join/<int:id>')
 def join_event(id):
+    if 'user_id' not in session:
+        return redirect('/logout')
     data = {
         "events_id": id,
         "users_id": session["user_id"]
@@ -67,6 +79,8 @@ def join_event(id):
 
 @app.route('/event/leave/<int:id>')
 def leave_event(id):
+    if 'user_id' not in session:
+        return redirect('/logout')
     data = {
         "events_id": id,
         "users_id": session["user_id"]
@@ -76,6 +90,8 @@ def leave_event(id):
 
 @app.route('/event/update/<int:id>', methods=['POST'])
 def edit(id):
+    if 'user_id' not in session:
+        return redirect('/logout')
     if not Event.validate_register(request.form):
         return redirect (f'/event/edit/{id}')
     data={
@@ -91,6 +107,8 @@ def edit(id):
 
 @app.route('/event/bulletin')
 def event_bulletin():
+    if 'user_id' not in session:
+        return redirect('/logout')
     data = {
         'id': session["user_id"]
     }
