@@ -50,6 +50,8 @@ def login():
 
 @app.route('/user/details/<int:id>')
 def user_details(id):
+    if 'user_id' not in session:
+        return redirect('/logout')
     data = {
         'id': id
     }
