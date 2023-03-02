@@ -9,36 +9,41 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <br>
-    <br>
     <div class="background">
-        <h1 class="text-center"> About {{user.first_name}}</h1>
+        <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+            <span class="navbar-text">
+                <h1> Event Horizon </h1>
+            </span>
+        </nav>
+        <br>
+        <h2 class="text-center text-info"> About {{user.first_name}}</h2>
         <div class = "navBar container">
             <a  class="btn btn-primary" href="/dashboard">Home</a>
-            <a  class="btn btn-primary" href="/event/bulletin">Bulletin</a>
+            <a  class="btn btn-primary" href="/event/bulletin"> More Events </a>
             <a class="btn btn-danger float-right" href="/logout">Logout</a>
         </div>
-        <div class="container card-body center">
-            <div class="card text-white bg-info mb-3 center" style="max-width: 40rem;">
-                <div class="card-header"> <h2> Creator's Information</h2></div>
-                <div class="card-body">
-                    <h5 class="card-title"> Name: </h5>
-                    <p class="card-text"> {{user.first_name}} </p>
-                    <h5 class="card-title"> Email: </h5>
-                    <p class="card-text"> {{user.email}} </p>
+        <div class="event">
+            <div class="container card-body text-center">
+                <div class="card text-white bg-info mb-3 center" style="max-width: 40rem;">
+                    <div class="card-header"> <h2> Creator's Information</h2></div>
+                    <div class="card-body">
+                        <h5 class="card-title"> Name: </h5>
+                        <p class="card-text"> {{user.first_name}} </p>
+                        <h5 class="card-title"> Email: </h5>
+                        <p class="card-text"> {{user.email}} </p>
+                    </div>
+                </div>
+                <div class="card text-center" style="width: 40rem;">
+                    <div class="card-header text-info">
+                        <h4> Events Attending  </h4>
+                    </div>
+                    {% for event in all_user.joined_events %}
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"> <a href="/event/details/{{event.id}}"> {{event.event_name}}</a> </li>
+                        </ul>
+                    {% endfor %}
                 </div>
             </div>
-            <div class="card" style="width: 40rem;">
-                <div class="card-header">
-                    <h4 class="text-color bg-info"> Events attending  </h4>
-                </div>
-                {% for event in all_user.joined_events %}
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item"> <a href="/event/details/{{event.id}}"> {{event.event_name}}</a> </li>
-                    </ul>
-                {% endfor %}
-            </div>
-                    
         </div>
     </div>
 

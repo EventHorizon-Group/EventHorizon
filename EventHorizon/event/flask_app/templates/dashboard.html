@@ -9,18 +9,22 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <br>
-    <br>
     <div class="background">
-        <h1 class="text-center text-primary">Welcome to Event Horizon {{user.first_name}}!</h1>
+        <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+            <span class="navbar-text">
+                <h1> Event Horizon </h1>
+            </span>
+        </nav>
+        <br>
+        <h1 class="text-center" style="color: hsl(200, 45%, 31%)">Welcome to Event Horizon {{user.first_name}}!</h1>
         <br>
         <div class="container">
             <a class="btn btn-primary" href="/event/new">+ Create</a>
             <a class="btn btn-primary" href="/event/bulletin"> More Events </a>
             <a class="btn btn-danger float-right" href="/logout">Logout</a>
         </div>
-        <h3 class="text-center text-primary">My Events</h3>
         <br>
+        <h3 class="container" style="color: hsl(200, 70%, 35%)">My Events</h3>
         <div>
             <div>
                 <table class="table table-bordered container">
