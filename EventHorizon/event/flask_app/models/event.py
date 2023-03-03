@@ -163,11 +163,12 @@ class Event:
             flash("Event Name must be at least 2 characters")
             is_valid= False
 
-        if tv['location'] is None:
+        if len(tv['location']) == 0:
             flash("Event Location required")
             is_valid= False
 
-        if tv['date'] is None:
+        print(tv['date'])
+        if len(tv['date']) == 0:
             flash("Event Date required")
             is_valid= False    
                     
@@ -175,7 +176,7 @@ class Event:
             flash("Description must be at least 3 characters")
             is_valid= False
 
-        if tv['member_num'] is None:
+        if len(tv['member_num']) == 0:
             flash("Max Members need to be at least 1")
             is_valid= False
 
