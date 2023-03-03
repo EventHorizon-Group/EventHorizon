@@ -15,7 +15,7 @@ def user_create():
     if 'user_id' not in session:
         return redirect('/logout')
     if not Event.validate_register(request.form):
-        return redirect ('/event/create')
+        return redirect ('/event/new')
 
 
     create_data={
